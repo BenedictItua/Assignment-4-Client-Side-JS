@@ -19,19 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-
-            // Extract the movie reviews from the API response
             const reviews = data.results;
+            const movieReviews = document.getElementById('movieReviews');
 
-            // Iterate through each movie review and display it on the page
             reviews.forEach(review => {
                 const reviewElement = document.createElement('div');
-                reviewElement.textContent = review.display_title + ' - ' + review.summary_short;
-                document.body.appendChild(reviewElement);
+                reviewElement.className = 'review';
+                reviewElement.innerHTML = `<h2>${review.display_title}</h2><p>${review.summary_short}</p>`;
+                movieReviews.appendChild(reviewElement);
             });
         })
         .catch(error => {
-             // Handle any errors that occur during the fetch request
             console.error('Error fetching data:', error);
         });
 });
