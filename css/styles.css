@@ -1,0 +1,37 @@
+/* Apply basic styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Style the <p> tag for student information */
+p#studentInfo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Style the movie review divs */
+div.review {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style the link to the API documentation */
+p a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+/* Center align text */
+.text-center {
+    text-align: center;
+}
