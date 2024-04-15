@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const apiKey = 'ptXfAJY6AfVdZD2hFhLtnDXnN1oZ3urk';
     
     // The URL for the Article Search API at nytimes.com
-    const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=godfather&api-key=${apiKey}`;
+    const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=${apiKey}`;
 
     console.log('Fetching data from:', apiUrl);
 
