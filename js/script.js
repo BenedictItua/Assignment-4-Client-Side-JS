@@ -19,35 +19,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Fetch data from the API
 fetch(apiUrl)
-.then(response => {
-    // Check if the response is ok
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    // Parse response to JSON
-    return response.json();
-})
-.then(data => {
-    // Check if data and results exist
-    if (data && data.results) {
-        const reviews = data.results;
-        const movieReviews = document.getElementById('movieReviews');
+    .then(response => {
+        // Check if the response is ok
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
+        }
+        // Parse response to JSON
+        return response.json();
+    })
+    .then(data => {
+        // Check if data and results exist
+        if (data && data.results && data.results.length > 0) {
+            const reviews = data.results;
+            const movieReviews = document.getElementById('movieReviews');
 
-        // Loop through each review and create a div element
-        reviews.forEach(review => {
-            const reviewElement = document.createElement('div');
-            reviewElement.className = 'review';
-            // Populate div with review title and summary
-            reviewElement.innerHTML = `<h2>${review.display_title}</h2><p>${review.summary_short}</p>`;
-            // Append review div to movieReviews container
-            movieReviews.appendChild(reviewElement);
-        });
-    } else {
-        throw new Error('No reviews found in the fetched data');
-    }
-})
-.catch(error => {
-    // Log any errors to the console
-    console.error('Error fetching data:', error);
-});
+            // Clear existing content in movieReviews container
+            movieReviews.innerHTML = '';
+
+            // Loop through each review and create a div element
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review';
+                // Populate div with review title and summary
+                reviewElement.innerHTML = `<h2>${review.display_title}</h2><p>${review.summary_short}</p>`;
+                // Append review div to movieReviews container
+                movieReviews.appendChild(reviewElement);
+            });
+        } else {
+            throw new Error('No reviews found in the fetched data');
+        }
+    })
+    .catch(error => {
+        // Handle any errors that occurred during fetching or processing
+        console.error('An error occurred:', error.message);
+        alert('An error occurred while fetching movie reviews. Please try again later.');
+    });
 });
